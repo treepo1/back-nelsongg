@@ -1,10 +1,9 @@
-import summonerRoutes from './routes.js'
-import express = from "express";
+import { routes } from './routes/summoner.routes.js'
+import express from "express";
 import json from "express";
 import cors  from "cors";
-import axios from "axios";
+import 'dotenv/config';
 
-require("dotenv").config();
 
 
 
@@ -14,6 +13,6 @@ const app = express();
 
 app.use(json())
 app.use(cors())
-app.use(summonerRoutes);
+app.use(routes);
 app.listen(3333)
 console.log('Server running on port: 3333')

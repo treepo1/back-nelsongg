@@ -1,5 +1,4 @@
-
-
+import axios from "axios";
 
 export const getData = async(req,res)=>{
     const { summonerName } = req.params

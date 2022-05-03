@@ -1,2 +1,2 @@
 ## NELSON.GG
-A <a> src = "https://br.op.gg" OP.GG </a> clone 
+A [OP.GG]("https://br.op.gg") clone 

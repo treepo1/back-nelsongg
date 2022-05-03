@@ -3,10 +3,10 @@ import { getData } from '../controller.js';
 
 
 
-export const routes = Router();
+export const summonerRoutes = Router();
 
 
-routes.get("/summoner/:summonerName", getData )
+summonerRoutes.get("/summoner/:summonerName", getData )
 
 
 

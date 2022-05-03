@@ -1,25 +1,7 @@
-const express = require("express");
-const { json } = require("express");
-require("dotenv").config();
-
-const cors = require('cors')
-const axios = require('axios');
-const { response } = require("express");
-const { get } = require("express/lib/response");
 
 
 
-const app = express();
-
-app.use(json())
-app.use(cors())
-app.listen(3333)
-
-
-
-
-
-app.get("/summoner/:summonerName",async(req,res)=>{
+export const getData = async(req,res)=>{
     const { summonerName } = req.params
 
     const summonerIdResponse = await axios.get(`${process.env.LOL_URL}/lol/summoner/v4/summoners/by-name/${summonerName}?api_key=${process.env.LOL_KEY}`).catch(e=> {
@@ -28,7 +10,7 @@ app.get("/summoner/:summonerName",async(req,res)=>{
 
     if (summonerIdResponse.data) {
         const { id, profileIconId, summonerLevel, name} = summonerIdResponse.data
-    
+
 
     const responseRanked = await axios.get(`${process.env.LOL_URL}/lol/league/v4/entries/by-summoner/${id}?api_key=${process.env.LOL_KEY}`).catch(e=> {
         return res.status(e.response.status).json(e.response.data)
@@ -67,7 +49,7 @@ app.get("/summoner/:summonerName",async(req,res)=>{
                 championsURL1: championsId.map( (e) => `${process.env.LOL_CHAMPIONS}/${e}`)[0],
                 championsURL2: championsId.map( (e) => `${process.env.LOL_CHAMPIONS}/${e}`)[1],
                 championsURL3: championsId.map( (e) => `${process.env.LOL_CHAMPIONS}/${e}`)[2]
-    
+
             }
         )
 
@@ -88,14 +70,13 @@ app.get("/summoner/:summonerName",async(req,res)=>{
                 championsURL1: championsId.map( (e) => `${process.env.LOL_CHAMPIONS}/${e}`)[0],
                 championsURL2: championsId.map( (e) => `${process.env.LOL_CHAMPIONS}/${e}`)[1],
                 championsURL3: championsId.map( (e) => `${process.env.LOL_CHAMPIONS}/${e}`)[2]
-    
+
             }
         )
         }
     }
-    
 
 
-    
-})
 
+
+}

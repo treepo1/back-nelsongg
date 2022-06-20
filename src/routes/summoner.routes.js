@@ -1,12 +1,13 @@
 import { Router } from 'express';
-import { getData } from '../controller.js';
+import SummonerController  from '../controllers/summoner.controller.js';
 
 
+const summonercontroller = new SummonerController()
 
 export const summonerRoutes = Router();
 
 
-summonerRoutes.get("/summoner/:summonerName", getData )
+summonerRoutes.get("/summoner/:summonerName", summonercontroller.getData )
 
 
 
